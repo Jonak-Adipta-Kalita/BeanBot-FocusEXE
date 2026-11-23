@@ -80,7 +80,7 @@ class Allocation(commands.Cog):
                     await member.add_roles(role, reason="Role allocation")
                 except (discord.Forbidden, discord.HTTPException) as e:
                     await self.log_error(member.guild, f"Failed to add {
-                            role.name} to {member}: {e}")
+                        role.name} to {member}: {e}")
 
     async def sync_members(self):
         await self.bot.wait_until_ready()
@@ -90,7 +90,6 @@ class Allocation(commands.Cog):
             print(f"Guild {self.guild_id} not found!")
             return
 
-        # Validate that all 4 roles exist
         missing = [name for name, rid in ROLES.items() if guild.get_role(rid) is None]
         if missing:
             await self.log_error(
