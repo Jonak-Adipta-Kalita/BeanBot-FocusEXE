@@ -90,7 +90,8 @@ class Allocation(commands.Cog):
             print(f"Guild {self.guild_id} not found!")
             return
 
-        missing = [name for name, rid in ROLES.items() if guild.get_role(rid) is None]
+        missing = [name for name, rid in ROLES.items()
+                                                     if guild.get_role(rid) is None]
         if missing:
             await self.log_error(
                 guild, f"Missing roles in server: {', '.join(missing)}"
@@ -102,6 +103,7 @@ class Allocation(commands.Cog):
 
         print(f"Allocation sync done. Counts: {self.counts}")
 
+  @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         if member.guild.id != self.guild_id:
             return
